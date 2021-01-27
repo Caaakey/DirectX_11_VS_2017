@@ -12,8 +12,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	MainEntry m_Main = MainEntry();
 	Application m_Application = Application();
+	DXRenderer m_Renderer = DXRenderer();
 
-	if (FAILED(m_Application.OnCreate(hInstance, nCmdShow))) return FALSE;
+	if (FAILED(m_Application.OnCreate(hInstance, nCmdShow)))
+		RETURN_FAILED_MESSAGE(L"Create Window Failed");
+
+	if (FAILED(m_Renderer.Initialize(m_Application.Width, m_Application.Height)))		return FALSE;
+	if (FAILED(m_Renderer.InitializeDeviceAndSwapChain(m_Application.hWnd)))			return FALSE;
+	if (FAILED(m_Renderer.CreateBackBuffer(m_Application.Width, m_Application.Height)))	return FALSE;
 
 	MSG msg;
 	while (true)
@@ -28,9 +34,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			_Timer->UpdateTime();
 
 			m_Main.Update();
+
+			m_Renderer.Clear();
 			m_Main.Render();
+			m_Renderer.Present();
 		}
 	}
+
+	m_Renderer.Release();
 
 	return (int)msg.wParam;
 }

@@ -16,6 +16,7 @@ HRESULT MainEntry::Start()
 
 void MainEntry::Update()
 {
+	if (_KeyCode->KeyDown(VK_ESCAPE)) PostQuitMessage(0);
 }
 
 void MainEntry::Render()

@@ -104,6 +104,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\_Extensions\ImGui\Debug\x64;..\_Extensions\PhysX-4.1\_Lib\Debug\x64;..\_Extensions\Dx11Effect\Debug\x64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -120,6 +121,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\_Extensions\ImGui\Debug\x64;..\_Extensions\PhysX-4.1\_Lib\Debug\x64;..\_Extensions\Dx11Effect\Debug\x64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -140,6 +142,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\_Extensions\ImGui\Release\x64;..\_Extensions\PhysX-4.1\_Lib\Release\x64;..\_Extensions\Dx11Effect\Release\x64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -160,9 +163,12 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\_Extensions\ImGui\Release\x64;..\_Extensions\PhysX-4.1\_Lib\Release\x64;..\_Extensions\Dx11Effect\Release\x64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Managers\Input\InputManager.h" />
+    <ClInclude Include="System\Renderer\DXRenderer.h" />
     <ClInclude Include="MainEntry\Interface\IScene.h" />
     <ClInclude Include="System\Application.h" />
     <ClInclude Include="MainEntry\MainEntry.h" />
@@ -172,6 +178,8 @@
     <ClInclude Include="Utility\DefineUtility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Managers\Input\InputManager.cpp" />
+    <ClCompile Include="System\Renderer\DXRenderer.cpp" />
     <ClCompile Include="System\Application.cpp" />
     <ClCompile Include="MainEntry\MainEntry.cpp" />
     <ClCompile Include="stdafx.cpp" />

@@ -14,5 +14,16 @@
 #include <tchar.h>
 #include <string>
 
+//	Renderer
+#include "System/Renderer/DXRenderer.h"
+
+//	Utility
 #include "Utility/DefineUtility.h"
+
+//	Managers
 #include "Managers/Timer/Timer.h"
+#include "Managers/Input/InputManager.h"
+
+#pragma comment(lib, "D3D11_ImGUI.lib")
+#include <ImGui/imgui.h>
+#include <ImGui/imgui_impl_dx11.h>

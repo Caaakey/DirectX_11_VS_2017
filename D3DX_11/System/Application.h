@@ -3,13 +3,15 @@
 
 class Application
 {
-public:
+private:
 	const LPCWSTR ApplicationName = L"Sample Application";
 
-	HWND m_hWnd;
 	HINSTANCE m_hInstance;
-	UINT m_Width;
-	UINT m_Height;
+
+	ReadonlyProperty(HWND, hWnd)
+
+	Property(UINT, Width)
+	Property(UINT, Height)
 
 public:
 	Application();
