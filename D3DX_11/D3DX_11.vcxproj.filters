@@ -33,13 +33,22 @@
     <ClInclude Include="System\Application.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MainEntry\Interface\IScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="System\Renderer\DXRenderer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Managers\Input\InputManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\Sample\SampleScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\PolygonUtility.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\SceneObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Interface\IScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -63,6 +72,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Managers\Input\InputManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\Sample\SampleScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\PolygonUtility.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

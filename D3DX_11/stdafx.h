@@ -28,7 +28,9 @@
 #include "Managers/Input/InputManager.h"
 
 //	Global interfaces
-#include "MainEntry/Interface/IScene.h"
+
+//	Objects
+#include "Objects/SceneObject.h"
 
 #pragma comment(lib, "D3D11_ImGUI.lib")
 #include <ImGui/imgui.h>

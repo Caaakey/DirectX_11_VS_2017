@@ -95,8 +95,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Managers\Input\InputManager.h" />
+    <ClInclude Include="Objects\SceneObject.h" />
+    <ClInclude Include="Utility\PolygonUtility.h" />
+    <ClInclude Include="Scenes\Sample\SampleScene.h" />
     <ClInclude Include="System\Renderer\DXRenderer.h" />
-    <ClInclude Include="MainEntry\Interface\IScene.h" />
+    <ClInclude Include="Objects\Interface\IScene.h" />
     <ClInclude Include="System\Application.h" />
     <ClInclude Include="MainEntry\MainEntry.h" />
     <ClInclude Include="stdafx.h" />
@@ -106,6 +109,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Managers\Input\InputManager.cpp" />
+    <ClCompile Include="Utility\PolygonUtility.cpp" />
+    <ClCompile Include="Scenes\Sample\SampleScene.cpp" />
     <ClCompile Include="System\Renderer\DXRenderer.cpp" />
     <ClCompile Include="System\Application.cpp" />
     <ClCompile Include="MainEntry\MainEntry.cpp" />
