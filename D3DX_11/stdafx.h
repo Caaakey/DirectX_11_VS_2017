@@ -14,6 +14,9 @@
 #include <tchar.h>
 #include <string>
 
+#include <vector>
+#include <map>
+
 //	Renderer
 #include "System/Renderer/DXRenderer.h"
 
@@ -23,6 +26,9 @@
 //	Managers
 #include "Managers/Timer/Timer.h"
 #include "Managers/Input/InputManager.h"
+
+//	Global interfaces
+#include "MainEntry/Interface/IScene.h"
 
 #pragma comment(lib, "D3D11_ImGUI.lib")
 #include <ImGui/imgui.h>

@@ -6,15 +6,23 @@ DXRenderer::DXRenderer()
 	m_GPUMemorySize(0), m_GPUDescription(L""),
 	m_Numerator(0), m_Denominator(1),
 	m_BackBuffer(nullptr), m_DepthStencilView(nullptr), m_RenderTargetView(nullptr),
-	isVsync(false), isFullScreen(false)
+	isVsync(false), isFullScreen(false), isUseImGui(false)
 
 #if defined(_DEBUG)
 	, m_DebugDevice(nullptr)
 #endif
 { }
 
-void DXRenderer::Release()
+DXRenderer::~DXRenderer()
 {
+	if (isUseImGui) {
+		ImGui_ImplDX11_Shutdown();
+		ImGui_ImplWin32_Shutdown();
+		ImGui::DestroyContext();
+
+		isUseImGui = false;
+	}
+
 	SAFE_RELEASE(m_DepthStencilView);
 	SAFE_RELEASE(m_RenderTargetView);
 	SAFE_RELEASE(m_BackBuffer);
@@ -89,7 +97,7 @@ HRESULT DXRenderer::InitializeDeviceAndSwapChain(HWND hWnd)
 {
 	//	https://devblogs.microsoft.com/directx/dxgi-flip-model/
 	DXGI_SWAP_CHAIN_DESC swapChainDesc = { 0, };
-	swapChainDesc.BufferCount = 2u;
+	swapChainDesc.BufferCount = 1;
 	swapChainDesc.BufferDesc.Width = 0;
 	swapChainDesc.BufferDesc.Height = 0;
 	swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -110,8 +118,8 @@ HRESULT DXRenderer::InitializeDeviceAndSwapChain(HWND hWnd)
 	swapChainDesc.SampleDesc.Count = 1u;
 	swapChainDesc.SampleDesc.Quality = 0;
 	swapChainDesc.Windowed = !isFullScreen;
-	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
-	swapChainDesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+	swapChainDesc.Flags = 0;
 
 	UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
 
@@ -120,8 +128,6 @@ HRESULT DXRenderer::InitializeDeviceAndSwapChain(HWND hWnd)
 #endif
 
 	D3D_FEATURE_LEVEL featureLevels[] = {
-		D3D_FEATURE_LEVEL_12_1,
-		D3D_FEATURE_LEVEL_12_0,
 		D3D_FEATURE_LEVEL_11_1,
 		D3D_FEATURE_LEVEL_11_0,
 		D3D_FEATURE_LEVEL_10_1,
@@ -145,6 +151,20 @@ HRESULT DXRenderer::InitializeDeviceAndSwapChain(HWND hWnd)
 	))) RETURN_FAILED_MESSAGE(L"D3D11CreateDeviceAndSwapChain ERROR");
 
 	m_DeviceFeatureLevel = m_Device->GetFeatureLevel();
+
+	return S_OK;
+}
+
+HRESULT DXRenderer::InitializeImGui(HWND hWnd)
+{
+	isUseImGui = true;
+
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGui::StyleColorsDark();
+
+	ImGui_ImplWin32_Init(hWnd);
+	ImGui_ImplDX11_Init(m_Device, m_DeviceContext);
 
 	return S_OK;
 }
@@ -209,14 +229,28 @@ void DXRenderer::Resize(UINT width, UINT height)
 	CreateBackBuffer(width, height);
 }
 
+static bool isShow = true;
 const float m_ClearColor[] = { 0.5f, 0.5f, 0.5f, 1.0f };
 void DXRenderer::Clear()
 {
+	if (isUseImGui) {
+		ImGui_ImplDX11_NewFrame();
+		ImGui_ImplWin32_NewFrame();
+		ImGui::NewFrame();
+
+		ImGui::ShowDemoWindow(&isShow);
+	}
+
 	m_DeviceContext->ClearRenderTargetView(m_RenderTargetView, m_ClearColor);
 	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
 void DXRenderer::Present()
 {
+	if (isUseImGui) {
+		ImGui::Render();
+		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+	}
+
 	m_SwapChain->Present(isVsync ? 1 : 0, 0);
 }

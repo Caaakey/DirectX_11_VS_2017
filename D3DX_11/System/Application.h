@@ -3,6 +3,18 @@
 
 class Application
 {
+public:
+	static Application& Get() {
+		static Application instance;
+		return instance;
+	}
+
+	Application();
+	Application(Application const&) = delete;
+	~Application();
+
+	void operator=(Application const&) = delete;
+
 private:
 	const LPCWSTR ApplicationName = L"Sample Application";
 
@@ -14,10 +26,8 @@ private:
 	Property(UINT, Height)
 
 public:
-	Application();
-	~Application();
-
 	HRESULT OnCreate(HINSTANCE hInstance, int CmdShow);
+
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 };
 

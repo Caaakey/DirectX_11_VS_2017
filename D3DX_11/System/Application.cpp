@@ -64,6 +64,11 @@ HRESULT Application::OnCreate(HINSTANCE hInstance, int CmdShow)
 
 LRESULT Application::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	if (DXRenderer::Get().IsUsedImGui()) {
+		if (ImGui_ImplWin32_WndProcHandler(hWnd, message, (UINT)wParam, (long)lParam))
+			return true;
+	}
+
 	switch (message)
 	{
 	case WM_SIZE:

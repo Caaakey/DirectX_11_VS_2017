@@ -10,17 +10,21 @@
 class DXRenderer
 {
 public:
-	static DXRenderer* Get() {
+	static DXRenderer& Get() {
 		static DXRenderer instance;
-		return &instance;
+		return instance;
 	}
 
 	DXRenderer();
-	void Release();
+	DXRenderer(DXRenderer const&) = delete;
+	~DXRenderer();
+
+	void operator=(DXRenderer const&) = delete;
 	
 public:
 	HRESULT Initialize(UINT width, UINT height);
 	HRESULT InitializeDeviceAndSwapChain(HWND hWnd);
+	HRESULT InitializeImGui(HWND hWnd);
 	HRESULT CreateBackBuffer(UINT width, UINT height);
 
 	void SetRenderTarget(ID3D11RenderTargetView* pRtv, ID3D11DepthStencilView* pDsv);
@@ -28,6 +32,8 @@ public:
 
 	void Clear();
 	void Present();
+
+	bool IsUsedImGui() const { return isUseImGui; }
 
 private:
 	ID3D11Device* m_Device;
@@ -47,6 +53,8 @@ private:
 	D3D_FEATURE_LEVEL m_DeviceFeatureLevel;
 	bool isVsync;
 	bool isFullScreen;
+
+	bool isUseImGui;
 
 #if defined(_DEBUG)
 	ID3D11Debug* m_DebugDevice;
