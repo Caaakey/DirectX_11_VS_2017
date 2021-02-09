@@ -10,8 +10,7 @@ public:
 		Enable = true;
 	}
 
+private:
 	Property(bool, Enable)
 	Property(std::string, Name)
-
-private:
 };

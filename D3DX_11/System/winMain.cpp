@@ -1,6 +1,5 @@
 ﻿#include "stdafx.h"
 #include "MainEntry/MainEntry.h"
-#include "System/Application.h"
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,

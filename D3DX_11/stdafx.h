@@ -7,6 +7,11 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
+#if _DEBUG
+#pragma comment(lib, "VLD/lib/vld.lib")
+#include <VLD/vld.h>
+#endif
+
 // C 런타임 헤더 파일입니다.
 #include <stdlib.h>
 #include <malloc.h>
@@ -17,11 +22,18 @@
 #include <vector>
 #include <map>
 
-//	Renderer
-#include "System/Renderer/DXRenderer.h"
-
 //	Utility
 #include "Utility/DefineUtility.h"
+
+//	Application
+#include "System/Application.h"
+
+#pragma comment(lib, "D3D11_ImGUI.lib")
+#include <ImGui/imgui.h>
+#include <ImGui/imgui_impl_dx11.h>
+
+//	Renderer
+#include "System/Renderer/DXRenderer.h"
 
 //	Managers
 #include "Managers/Timer/Timer.h"
@@ -30,8 +42,5 @@
 //	Global interfaces
 
 //	Objects
-#include "Objects/SceneObject.h"
+#include "_Scenes/SceneObject.h"
 
-#pragma comment(lib, "D3D11_ImGUI.lib")
-#include <ImGui/imgui.h>
-#include <ImGui/imgui_impl_dx11.h>

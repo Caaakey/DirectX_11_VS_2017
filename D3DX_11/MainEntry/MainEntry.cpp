@@ -39,11 +39,15 @@ HRESULT MainEntry::AddScene(SceneObject * pScene)
 	try
 	{
 		if (pScene == nullptr || pScene->Name.empty())
-			throw;
-	}
-	catch (...)
-	{
+			throw std::exception("Scene is Null or empty Name"); 
 
+		pScene->Start();
+		m_Scenes.emplace_back(pScene);
+	}
+	catch (const std::exception e)
+	{
+		MessageBoxA(Application::Get().hWnd, e.what(), NULL, MB_OK);
+		return E_FAIL;
 	}
 
 	return S_OK;
@@ -51,5 +55,19 @@ HRESULT MainEntry::AddScene(SceneObject * pScene)
 
 HRESULT MainEntry::RemoveScene(SceneObject * pScene)
 {
-	return E_NOTIMPL;
+	if (pScene == nullptr || pScene->Name.empty()) return E_FAIL;
+	if (m_SceneLength == 0) return S_OK;
+
+	for (auto iter = m_Scenes.begin(); iter != m_Scenes.end(); ++iter)
+	{
+		if ((*iter)->Name == pScene->Name)
+		{
+			delete (*iter);
+			m_Scenes.erase(iter);
+
+			break;
+		}
+	}
+
+	return S_OK;
 }
