@@ -24,6 +24,7 @@
 
 //	Utility
 #include "Utility/DefineUtility.h"
+#include "Objects/Importer/ModelUtility.h"
 
 //	Application
 #include "System/Application.h"

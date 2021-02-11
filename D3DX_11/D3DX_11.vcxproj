@@ -62,14 +62,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\;..\_Extensions;..\_Extensions\PhysX-4.1</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\_Extensions;..\_Extensions\PhysX-4.1;..\_Extensions\Assimp</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\_Extensions;..\_Extensions\ImGui\Debug\x64;..\_Extensions\PhysX-4.1\_Lib\Debug\x64;..\_Extensions\Dx11Effect\Debug\x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\_Extensions;..\_Extensions\ImGui\Debug\x64;..\_Extensions\PhysX-4.1\_Lib\Debug\x64;..\_Extensions\Dx11Effect\Debug\x64;..\_Extensions\Assimp\Debug\x64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -83,18 +83,19 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\;..\_Extensions;..\_Extensions\PhysX-4.1</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\_Extensions;..\_Extensions\PhysX-4.1;..\_Extensions\Assimp</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\_Extensions;..\_Extensions\ImGui\Release\x64;..\_Extensions\PhysX-4.1\_Lib\Release\x64;..\_Extensions\Dx11Effect\Release\x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\_Extensions;..\_Extensions\ImGui\Release\x64;..\_Extensions\PhysX-4.1\_Lib\Release\x64;..\_Extensions\Dx11Effect\Release\x64;..\_Extensions\Assimp\Release\x64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Managers\Input\InputManager.h" />
+    <ClInclude Include="Objects\Importer\ModelUtility.h" />
     <ClInclude Include="Objects\Object.h" />
     <ClInclude Include="Objects\Renderer\Renderer.h" />
     <ClInclude Include="_Scenes\SceneObject.h" />
@@ -111,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Managers\Input\InputManager.cpp" />
+    <ClCompile Include="Objects\Importer\ModelUtility.cpp" />
     <ClCompile Include="Objects\Object.cpp" />
     <ClCompile Include="Objects\Renderer\Renderer.cpp" />
     <ClCompile Include="Utility\PolygonUtility.cpp" />

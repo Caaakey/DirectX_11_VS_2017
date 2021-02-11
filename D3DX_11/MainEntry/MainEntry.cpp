@@ -16,7 +16,8 @@ MainEntry::~MainEntry()
 
 HRESULT MainEntry::Start()
 {
-	
+	ModelImporter::ModelUtility::LoadModel("../_Resources/Cottage/cottage_fbx.fbx");
+
 	return S_OK;
 }
 
