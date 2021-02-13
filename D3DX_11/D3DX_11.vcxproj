@@ -94,10 +94,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="_Objects\ObjectModel.h" />
+    <ClInclude Include="_Components\CameraModule.h" />
+    <ClInclude Include="Managers\Camera\CameraManager.h" />
     <ClInclude Include="Managers\Input\InputManager.h" />
-    <ClInclude Include="Objects\Importer\ModelUtility.h" />
-    <ClInclude Include="Objects\Object.h" />
-    <ClInclude Include="Objects\Renderer\Renderer.h" />
+    <ClInclude Include="Utility\Importer\ModelUtility.h" />
+    <ClInclude Include="_Objects\Base\Object.h" />
+    <ClInclude Include="_Components\Renderer.h" />
+    <ClInclude Include="_Objects\Base\Transform.h" />
     <ClInclude Include="_Scenes\SceneObject.h" />
     <ClInclude Include="Utility\PolygonUtility.h" />
     <ClInclude Include="_Scenes\Sample\SampleScene.h" />
@@ -111,10 +115,14 @@
     <ClInclude Include="Utility\DefineUtility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="_Objects\ObjectModel.cpp" />
+    <ClCompile Include="_Components\CameraModule.cpp" />
+    <ClCompile Include="Managers\Camera\CameraManager.cpp" />
     <ClCompile Include="Managers\Input\InputManager.cpp" />
-    <ClCompile Include="Objects\Importer\ModelUtility.cpp" />
-    <ClCompile Include="Objects\Object.cpp" />
-    <ClCompile Include="Objects\Renderer\Renderer.cpp" />
+    <ClCompile Include="Utility\Importer\ModelUtility.cpp" />
+    <ClCompile Include="_Objects\Base\Object.cpp" />
+    <ClCompile Include="_Components\Renderer.cpp" />
+    <ClCompile Include="_Objects\Base\Transform.cpp" />
     <ClCompile Include="Utility\PolygonUtility.cpp" />
     <ClCompile Include="_Scenes\Sample\SampleScene.cpp" />
     <ClCompile Include="System\Renderer\DXRenderer.cpp" />

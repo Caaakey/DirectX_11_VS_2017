@@ -1,13 +1,17 @@
 #pragma once
 
-class SampleScene : public IScene
+class SampleScene : public SceneObject
 {
 public:
-	SampleScene();
+	SampleScene(const char* name);
 	~SampleScene();
 
 	virtual HRESULT Start() override;
 	virtual void Update() override;
 	virtual void Render() override;
+
+private:
+	ObjectModel* pObject;
+
 };
 

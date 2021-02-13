@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "MainEntry.h"
 
+#include "_Scenes/Sample/SampleScene.h"
+
 MainEntry::MainEntry()
 	:m_SceneLength(0)
 {
@@ -16,7 +18,9 @@ MainEntry::~MainEntry()
 
 HRESULT MainEntry::Start()
 {
-	ModelImporter::ModelUtility::LoadModel("../_Resources/Cottage/cottage_fbx.fbx");
+	//ModelImporter::ModelUtility::LoadModel("../_Resources/Cottage/cottage_fbx.fbx");
+
+	AddScene(new SampleScene("SampleScene"));
 
 	return S_OK;
 }
@@ -44,6 +48,8 @@ HRESULT MainEntry::AddScene(SceneObject * pScene)
 
 		pScene->Start();
 		m_Scenes.emplace_back(pScene);
+
+		m_SceneLength++;
 	}
 	catch (const std::exception e)
 	{
@@ -66,6 +72,7 @@ HRESULT MainEntry::RemoveScene(SceneObject * pScene)
 			delete (*iter);
 			m_Scenes.erase(iter);
 
+			m_SceneLength--;
 			break;
 		}
 	}

@@ -24,7 +24,7 @@
 
 //	Utility
 #include "Utility/DefineUtility.h"
-#include "Objects/Importer/ModelUtility.h"
+#include "Utility/Importer/ModelUtility.h"
 
 //	Application
 #include "System/Application.h"
@@ -39,9 +39,10 @@
 //	Managers
 #include "Managers/Timer/Timer.h"
 #include "Managers/Input/InputManager.h"
+#include "Managers/Camera/CameraManager.h"
 
 //	Global interfaces
 
 //	Objects
 #include "_Scenes/SceneObject.h"
-
+#include "_Objects/ObjectModel.h"

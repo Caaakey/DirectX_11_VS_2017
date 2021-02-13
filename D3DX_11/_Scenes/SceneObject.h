@@ -8,9 +8,14 @@ public:
 	{
 		Name = name;
 		Enable = true;
+		
+		m_WorldMatrix = DirectX::XMMatrixIdentity();
 	}
+
+	virtual ~SceneObject() {}
 
 private:
 	Property(bool, Enable)
 	Property(std::string, Name)
+	Property(DirectX::XMMATRIX, WorldMatrix)
 };
