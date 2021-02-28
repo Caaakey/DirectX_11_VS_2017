@@ -1,0 +1,10 @@
+//
+// FX Version: fx_5_0
+//
+// 1 local buffer(s)
+//
+cbuffer DefineObject
+{
+    float4x4 g_MVP;                     // Offset:    0, size:   64
+}
+

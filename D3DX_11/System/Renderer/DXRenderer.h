@@ -41,7 +41,7 @@ private:
 	IDXGISwapChain* m_SwapChain;
 
 	SIZE_T m_GPUMemorySize;
-	std::wstring m_GPUDescription;
+	LPCWSTR m_GPUDescription;
 
 	UINT m_Numerator;
 	UINT m_Denominator;
@@ -59,5 +59,9 @@ private:
 #if defined(_DEBUG)
 	ID3D11Debug* m_DebugDevice;
 #endif
+
+public:
+	ID3D11Device* GetDevice() const { return m_Device; }
+	ID3D11DeviceContext* GetContext() const { return m_DeviceContext; }
 };
 

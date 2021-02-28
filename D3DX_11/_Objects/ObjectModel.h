@@ -12,7 +12,7 @@ public:
 	static void DestoryModel(ObjectModel* pObject);
 
 	ObjectModel();
-	~ObjectModel();
+	virtual ~ObjectModel();
 
 };
 

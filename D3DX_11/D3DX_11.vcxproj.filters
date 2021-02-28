@@ -57,9 +57,6 @@
     <ClInclude Include="Utility\Importer\ModelUtility.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="_Components\Renderer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="_Components\CameraModule.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -70,6 +67,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="_Objects\ObjectModel.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Renderer\Shader\Vertex.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="_Components\Renderer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -107,9 +110,6 @@
     <ClCompile Include="Utility\Importer\ModelUtility.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="_Components\Renderer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="_Components\CameraModule.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -122,5 +122,11 @@
     <ClCompile Include="_Objects\ObjectModel.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="_Components\Renderer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="System\Renderer\FX\PixelShader.fx" />
   </ItemGroup>
 </Project>

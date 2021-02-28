@@ -12,6 +12,9 @@
 #include <VLD/vld.h>
 #endif
 
+//	X4717 Warning : effects deprecated for d3dcompiler_47
+#pragma warning(disable : 4717)
+
 // C 런타임 헤더 파일입니다.
 #include <stdlib.h>
 #include <malloc.h>

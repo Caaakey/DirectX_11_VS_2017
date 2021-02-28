@@ -242,7 +242,7 @@ void DXRenderer::Clear()
 	}
 
 	m_DeviceContext->ClearRenderTargetView(m_RenderTargetView, m_ClearColor);
-	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 }
 
 void DXRenderer::Present()
