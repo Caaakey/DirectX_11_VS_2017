@@ -1,5 +1,6 @@
 #pragma once
 
+using namespace DirectX;
 class SampleScene : public SceneObject
 {
 public:
@@ -12,6 +13,5 @@ public:
 
 private:
 	ObjectModel* pObject;
-
 };
 

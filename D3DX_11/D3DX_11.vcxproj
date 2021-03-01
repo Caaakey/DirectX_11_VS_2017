@@ -94,6 +94,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Utility\Mesh\MeshUtility.h" />
+    <ClInclude Include="_Components\Base\Component.h" />
+    <ClInclude Include="ComponentHeader.h" />
+    <ClInclude Include="_Components\Renderer\Mesh.h" />
     <ClInclude Include="System\Renderer\Shader\Vertex.h" />
     <ClInclude Include="_Objects\ObjectModel.h" />
     <ClInclude Include="_Components\CameraModule.h" />
@@ -101,7 +105,7 @@
     <ClInclude Include="Managers\Input\InputManager.h" />
     <ClInclude Include="Utility\Importer\ModelUtility.h" />
     <ClInclude Include="_Objects\Base\Object.h" />
-    <ClInclude Include="_Components\Renderer.h" />
+    <ClInclude Include="_Components\Renderer\Renderer.h" />
     <ClInclude Include="_Objects\Base\Transform.h" />
     <ClInclude Include="_Scenes\SceneObject.h" />
     <ClInclude Include="Utility\PolygonUtility.h" />
@@ -116,13 +120,15 @@
     <ClInclude Include="Utility\DefineUtility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Utility\Mesh\MeshUtility.cpp" />
+    <ClCompile Include="_Components\Renderer\Mesh.cpp" />
     <ClCompile Include="_Objects\ObjectModel.cpp" />
     <ClCompile Include="_Components\CameraModule.cpp" />
     <ClCompile Include="Managers\Camera\CameraManager.cpp" />
     <ClCompile Include="Managers\Input\InputManager.cpp" />
     <ClCompile Include="Utility\Importer\ModelUtility.cpp" />
     <ClCompile Include="_Objects\Base\Object.cpp" />
-    <ClCompile Include="_Components\Renderer.cpp" />
+    <ClCompile Include="_Components\Renderer\Renderer.cpp" />
     <ClCompile Include="_Objects\Base\Transform.cpp" />
     <ClCompile Include="Utility\PolygonUtility.cpp" />
     <ClCompile Include="_Scenes\Sample\SampleScene.cpp" />

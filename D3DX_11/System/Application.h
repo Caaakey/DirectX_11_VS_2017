@@ -15,6 +15,10 @@ public:
 
 	void operator=(Application const&) = delete;
 
+	HRESULT OnCreate(HINSTANCE hInstance, int CmdShow);
+
+	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+
 private:
 	const LPCWSTR ApplicationName = L"Sample Application";
 
@@ -26,8 +30,8 @@ private:
 	Property(UINT, Height)
 
 public:
-	HRESULT OnCreate(HINSTANCE hInstance, int CmdShow);
+	float AspectRatio() const { return (float)Width / Height; }
 
-	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+
 };
 

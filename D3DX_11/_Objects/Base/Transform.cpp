@@ -1,5 +1,5 @@
-#include "Transform.h"
 #include "stdafx.h"
+#include "Transform.h"
 
 Transform::Transform()
 {

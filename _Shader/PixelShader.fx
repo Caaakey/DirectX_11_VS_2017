@@ -8,13 +8,15 @@ cbuffer DefineObject
 struct VS_INPUT
 {
 	float3 Position : POSITION;
-	float4 Color	: COLOR;
+	float3 Normal	: NORMAL;
+	float2 Tex0		: TEXCOORD0;
 };
 
 struct PS_INPUT
 {
 	float4 Position : SV_POSITION;
-	float4 Color	: COLOR;
+	float3 Normal	: TEXCOORD0;
+	float2 Tex0		: TEXCOORD1;
 };
 
 PS_INPUT VS(VS_INPUT input)
@@ -24,8 +26,7 @@ PS_INPUT VS(VS_INPUT input)
 	output.Position = mul(float4(input.Position, 1), World);
 	output.Position = mul(output.Position, View);
 	output.Position = mul(output.Position, Projection);
-
-	output.Color = input.Color;
+	output.Tex0 = input.Tex0;
 
 	return output;
 }

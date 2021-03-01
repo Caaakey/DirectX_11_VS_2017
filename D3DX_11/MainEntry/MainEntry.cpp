@@ -6,6 +6,7 @@
 MainEntry::MainEntry()
 	:m_SceneLength(0)
 {
+	CameraManager::Get();
 }
 
 MainEntry::~MainEntry()
@@ -18,7 +19,7 @@ MainEntry::~MainEntry()
 
 HRESULT MainEntry::Start()
 {
-	//ModelImporter::ModelUtility::LoadModel("../_Resources/Cottage/cottage_fbx.fbx");
+	ModelImporter::ModelUtility::LoadModel("../_Resources/Cottage/cottage_fbx.fbx");
 
 	AddScene(new SampleScene("SampleScene"));
 

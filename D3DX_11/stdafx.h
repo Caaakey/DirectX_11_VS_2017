@@ -8,6 +8,7 @@
 #include <windows.h>
 
 #if _DEBUG
+#pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
 #pragma comment(lib, "VLD/lib/vld.lib")
 #include <VLD/vld.h>
 #endif
@@ -27,6 +28,7 @@
 
 //	Utility
 #include "Utility/DefineUtility.h"
+#include "Utility/Mesh/MeshUtility.h"
 #include "Utility/Importer/ModelUtility.h"
 
 //	Application
@@ -45,6 +47,9 @@
 #include "Managers/Camera/CameraManager.h"
 
 //	Global interfaces
+
+//	Components
+#include "ComponentHeader.h"
 
 //	Objects
 #include "_Scenes/SceneObject.h"
