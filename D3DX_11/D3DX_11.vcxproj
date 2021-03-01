@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -94,7 +94,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Utility\Mesh\MeshUtility.h" />
+    <ClInclude Include="_Components\Renderer\Interfaces\IRenderer.h" />
+    <ClInclude Include="_Components\Renderer\Material.h" />
     <ClInclude Include="_Components\Base\Component.h" />
     <ClInclude Include="ComponentHeader.h" />
     <ClInclude Include="_Components\Renderer\Mesh.h" />
@@ -120,7 +121,7 @@
     <ClInclude Include="Utility\DefineUtility.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Utility\Mesh\MeshUtility.cpp" />
+    <ClCompile Include="_Components\Renderer\Material.cpp" />
     <ClCompile Include="_Components\Renderer\Mesh.cpp" />
     <ClCompile Include="_Objects\ObjectModel.cpp" />
     <ClCompile Include="_Components\CameraModule.cpp" />

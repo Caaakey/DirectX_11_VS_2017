@@ -1,4 +1,4 @@
-cbuffer DefineObject
+cbuffer MatrixBuffer
 {
 	matrix World;
 	matrix View;
@@ -12,11 +12,18 @@ struct VS_INPUT
 	float2 Tex0		: TEXCOORD0;
 };
 
+Texture2D diffuseTex;
+SamplerState SamplerType
+{
+	Filter = MIN_MAG_MIP_LINEAR;
+	//Filter = ANISOTROPIC;
+	//MaxAnisotropy = 4; //	1 ~ 16
+};
+
 struct PS_INPUT
 {
 	float4 Position : SV_POSITION;
-	float3 Normal	: TEXCOORD0;
-	float2 Tex0		: TEXCOORD1;
+	float2 Tex0		: TEXCOORD0;
 };
 
 PS_INPUT VS(VS_INPUT input)
@@ -33,7 +40,8 @@ PS_INPUT VS(VS_INPUT input)
 
 float4 PS(PS_INPUT input) : SV_Target
 {
-	return input.Color;
+	float4 color = diffuseTex.Sample(SamplerType, input.Tex0);
+	return color;
 }
 
 technique11 Render

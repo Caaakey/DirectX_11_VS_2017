@@ -5,8 +5,7 @@ namespace Components
 {
 	Renderer::Renderer(Object* pConnect)
 		: Component(pConnect),
-		m_Mesh(nullptr),
-		m_Vertices(nullptr), m_Indices(nullptr), m_Fx(nullptr),
+		m_Mesh(nullptr), m_Material(nullptr), m_Fx(nullptr),
 		m_Techniuque(nullptr),
 		m_WorldVariable(nullptr), m_ViewVariable(nullptr), m_ProjectionVariable(nullptr),
 		m_InputLayout(nullptr)
@@ -20,10 +19,8 @@ namespace Components
 
 	void Renderer::Release()
 	{
-		SAFE_RELEASE(m_Vertices);
-		SAFE_RELEASE(m_Indices);
-
 		SAFE_DELETE(m_Mesh);
+		SAFE_DELETE(m_Material);
 
 		SAFE_RELEASE(m_Fx);
 		SAFE_RELEASE(m_InputLayout);
@@ -35,14 +32,16 @@ namespace Components
 
 	void Renderer::Render()
 	{
+		if (!m_Mesh) return;
+
 		DXRenderer::Get().GetContext()->IASetInputLayout(m_InputLayout);
 		DXRenderer::Get().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		UINT stride = sizeof MeshValue::VertexValue;
+		UINT stride = sizeof Renderers::MeshValue::VertexValue;
 		UINT offset = 0;
 
-		DXRenderer::Get().GetContext()->IASetVertexBuffers(0, 1, &m_Vertices, &stride, &offset);
-		DXRenderer::Get().GetContext()->IASetIndexBuffer(m_Indices, DXGI_FORMAT_R32_UINT, 0);
+		DXRenderer::Get().GetContext()->IASetVertexBuffers(0, 1, &m_Mesh->VerticesBuffer, &stride, &offset);
+		DXRenderer::Get().GetContext()->IASetIndexBuffer(m_Mesh->IndicesBuffer, DXGI_FORMAT_R32_UINT, 0);
 
 		DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
 
@@ -60,46 +59,16 @@ namespace Components
 		}
 	}
 
-	bool Renderer::SetBuffers()
+	HRESULT Renderer::SetBuffers()
 	{
-		{	//	Vertices buffer
-			D3D11_BUFFER_DESC buffer;
-			buffer.Usage = D3D11_USAGE_IMMUTABLE;
-			buffer.ByteWidth = sizeof MeshValue::VertexValue * m_Mesh->NumVertices();
-			buffer.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-			buffer.CPUAccessFlags = 0;
-			buffer.MiscFlags = 0;
-			buffer.StructureByteStride = 0;
+		if (!m_Mesh) return E_FAIL;
 
-			D3D11_SUBRESOURCE_DATA data;
-			data.pSysMem = &m_Mesh->GetMeshValue()->Vertices[0];
-
-			if (FAILED(DXRenderer::Get().GetDevice()->CreateBuffer(&buffer, &data, &m_Vertices)))
-				return false;
-		}
-
-		{	//	Indices buffer
-			D3D11_BUFFER_DESC buffer;
-			buffer.Usage = D3D11_USAGE_IMMUTABLE;
-			buffer.ByteWidth = sizeof UINT * m_Mesh->NumIndices();
-			buffer.BindFlags = D3D11_BIND_INDEX_BUFFER;
-			buffer.CPUAccessFlags = 0;
-			buffer.MiscFlags = 0;
-			buffer.StructureByteStride = 0;
-
-			D3D11_SUBRESOURCE_DATA data;
-			data.pSysMem = &m_Mesh->GetMeshValue()->Indices[0];
-
-			if (FAILED(DXRenderer::Get().GetDevice()->CreateBuffer(&buffer, &data, &m_Indices)))
-				return false;
-		}
-
-		return true;
+		return m_Mesh->IASet(DXRenderer::Get().GetDevice());
 	}
 
-	bool Renderer::IASetup(LPCWSTR filePath)
+	HRESULT Renderer::IASetup(LPCWSTR filePath)
 	{
-		if (!m_Mesh) return false;
+		if (!m_Mesh) return E_FAIL;
 
 		DWORD flags = D3DCOMPILE_ENABLE_STRICTNESS;
 		ID3D10Blob* pErrMsg = nullptr;
@@ -109,18 +78,22 @@ namespace Components
 		flags |= D3DCOMPILE_SKIP_OPTIMIZATION;
 #endif
 
-		if (FAILED(D3DX11CompileEffectFromFile(
+		HRESULT hr = S_OK;
+		hr = D3DX11CompileEffectFromFile(
 			filePath,
 			nullptr,
 			D3D_COMPILE_STANDARD_FILE_INCLUDE,
 			flags, 0,
 			DXRenderer::Get().GetDevice(),
 			&m_Fx,
-			&pErrMsg)))
+			&pErrMsg);
+
+		if (FAILED(hr))
 		{
 			MessageBox(nullptr, (LPCWSTR)pErrMsg->GetBufferPointer(), L"FX Compile error", MB_OK);
+
 			SAFE_RELEASE(pErrMsg);
-			return false;
+			return hr;
 		}
 
 		m_Techniuque = m_Fx->GetTechniqueByName("Render");
@@ -131,27 +104,32 @@ namespace Components
 		D3D11_INPUT_ELEMENT_DESC elements[] =
 		{
 			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-			{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, m_Mesh->NumIndices() / 3, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+			{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, m_Mesh->NumIndices() / 3, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+			{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, m_Mesh->NumVertices() / 2, D3D11_INPUT_PER_VERTEX_DATA, 0 }
 		};
 
 		D3DX11_PASS_DESC pass;
-		if (FAILED(m_Techniuque->GetPassByIndex(0)->GetDesc(&pass)))
+		hr = m_Techniuque->GetPassByIndex(0)->GetDesc(&pass);
+
+		if (FAILED(hr))
 		{
-			MessageBox(nullptr, L"GetDesc error", L"Error", MB_OK);
-			return false;
+			MessageBox(nullptr, L"GetPassByIndex pass is not found", L"Error", MB_OK);
+			return hr;
 		}
 
-		if (FAILED(DXRenderer::Get().GetDevice()->CreateInputLayout(
+		hr = DXRenderer::Get().GetDevice()->CreateInputLayout(
 			elements,
 			ARRAYSIZE(elements),
 			pass.pIAInputSignature,
 			pass.IAInputSignatureSize,
-			&m_InputLayout)))
+			&m_InputLayout);
+
+		if (FAILED(hr))
 		{
 			MessageBox(nullptr, L"IAInputLayout error", L"Error", MB_OK);
-			return false;
+			return hr;
 		}
 
-		return true;
+		return hr;
 	}
 }

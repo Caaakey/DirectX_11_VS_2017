@@ -16,7 +16,7 @@ HRESULT SampleScene::Start()
 	pObject = ObjectModel::CreateModel("Dummy");
 	Components::Renderer* r = pObject->AddComponent<Components::Renderer>();
 
-	r->SetMesh(MeshUtility::CreateBox(DirectX::XMFLOAT3(1, 1, 1)));
+	r->SetMesh(PolygonUtility::CreateBox(DirectX::XMFLOAT3(1, 1, 1)));
 
 	return S_OK;
 }

@@ -15,6 +15,7 @@
 
 //	X4717 Warning : effects deprecated for d3dcompiler_47
 #pragma warning(disable : 4717)
+#pragma warning(disable : 4099)
 
 // C 런타임 헤더 파일입니다.
 #include <stdlib.h>
@@ -28,7 +29,7 @@
 
 //	Utility
 #include "Utility/DefineUtility.h"
-#include "Utility/Mesh/MeshUtility.h"
+#include "Utility/PolygonUtility.h"
 #include "Utility/Importer/ModelUtility.h"
 
 //	Application

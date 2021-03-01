@@ -1,5 +1,6 @@
 #pragma once
 #include "Mesh.h"
+#include "Material.h"
 
 namespace Components
 {
@@ -14,11 +15,10 @@ namespace Components
 		void Render() override;
 
 	private:
-		Meshs::Mesh* m_Mesh;
+		Renderers::Mesh* m_Mesh;
+		Renderers::Material* m_Material;
 
 		ID3DX11Effect* m_Fx;
-		ID3D11Buffer* m_Vertices;
-		ID3D11Buffer* m_Indices;
 		ID3DX11EffectTechnique* m_Techniuque;
 		ID3DX11EffectMatrixVariable* m_WorldVariable;
 		ID3DX11EffectMatrixVariable* m_ViewVariable;
@@ -26,18 +26,27 @@ namespace Components
 
 		ID3D11InputLayout* m_InputLayout;
 
-		bool SetBuffers();
-		bool IASetup(LPCWSTR filePath);
+		HRESULT SetBuffers();
+		HRESULT IASetup(LPCWSTR filePath);
 
 	public:
-		Meshs::Mesh* GetMesh() const { return m_Mesh; }
-		void SetMesh(Meshs::Mesh* mesh)
+		Renderers::Mesh* GetMesh() const { return m_Mesh; }
+		void SetMesh(Renderers::Mesh* mesh)
 		{
-			if (m_Mesh) Release();
-
+			if (m_Mesh) SAFE_DELETE(m_Mesh);
 			m_Mesh = mesh;
+
 			SetBuffers();
 			IASetup(L"../_Shader/PixelShader.fx");
+		}
+
+		Renderers::Material* GetMaterial() const { return m_Material; }
+		void SetMaterial(Renderers::Material* material)
+		{
+			if (m_Material) SAFE_DELETE(m_Material);
+			m_Material = material;
+
+
 		}
 	};
 }
