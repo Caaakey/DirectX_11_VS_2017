@@ -1,8 +1,8 @@
 #pragma once
 
-namespace Resources
+namespace Components
 {
-	namespace Textures
+	namespace Renderers
 	{
 		class Texture
 		{

@@ -78,9 +78,6 @@
     <ClInclude Include="ComponentHeader.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="_Components\Renderer\Renderer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="_Components\Renderer\Mesh.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -93,7 +90,16 @@
     <ClInclude Include="Managers\ResourceManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MainEntry\Resources\Texture.h">
+    <ClInclude Include="_Components\Renderer\Texture.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="_Components\Renderer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="_Objects\Base\XMHelper\Vector3.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="_Objects\Base\XMHelper\Matrix.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -143,9 +149,6 @@
     <ClCompile Include="_Objects\ObjectModel.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="_Components\Renderer\Renderer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="_Components\Renderer\Mesh.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -155,11 +158,14 @@
     <ClCompile Include="Managers\ResourceManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MainEntry\Resources\Texture.cpp">
+    <ClCompile Include="_Components\Renderer\Texture.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="System\Renderer\FX\PixelShader.fx" />
+    <ClCompile Include="_Components\Renderer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="_Objects\Base\XMHelper\XMHelper.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

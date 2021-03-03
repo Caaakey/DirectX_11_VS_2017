@@ -1,10 +1,11 @@
 #pragma once
 
 class Object;
+class Transform;
 class Component
 {
 public:
-	Component(Object* connector) : m_Connect(connector) { }
+	Component(Object* connector) : m_Object(connector), m_Transform((Transform*)connector) { }
 	virtual ~Component() { }
 
 	Component(const Component&) = delete;
@@ -15,8 +16,9 @@ public:
 	virtual void Update() {}
 	virtual void Render() {}
 
-	Object* GetConnector() const { return m_Connect; }
+	Object* GetConnector() const { return m_Object; }
 
 protected:
-	Object* m_Connect = nullptr;
+	Object* m_Object = nullptr;
+	Transform* m_Transform = nullptr;
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include "Interfaces/IRenderer.h"
+#include "Texture.h"
 
 namespace Components
 {
@@ -12,8 +13,7 @@ namespace Components
 			~Material();
 
 		private:
-			ID3D11ShaderResourceView* m_DiffuseSRVTexture;
-			ID3DX11EffectShaderResourceVariable* m_DiffuseTexVariable;
+			Texture* m_MainTexture;
 
 		};
 	}

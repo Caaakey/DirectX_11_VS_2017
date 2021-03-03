@@ -1,6 +1,6 @@
 #pragma once
-#include "Mesh.h"
-#include "Material.h"
+#include "Renderer/Mesh.h"
+#include "Renderer/Material.h"
 
 namespace Components
 {
@@ -28,6 +28,9 @@ namespace Components
 
 		HRESULT SetBuffers();
 		HRESULT IASetup(LPCWSTR filePath);
+
+		void UpdateMesh();
+		void UpdateMaterial();
 
 	public:
 		Renderers::Mesh* GetMesh() const { return m_Mesh; }

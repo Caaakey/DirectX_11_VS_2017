@@ -94,8 +94,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="_Objects\Base\XMHelper\Matrix.h" />
+    <ClInclude Include="_Objects\Base\XMHelper\Vector3.h" />
     <ClInclude Include="Managers\ResourceManager.h" />
-    <ClInclude Include="MainEntry\Resources\Texture.h" />
+    <ClInclude Include="_Components\Renderer\Texture.h" />
     <ClInclude Include="_Components\Renderer\Interfaces\IRenderer.h" />
     <ClInclude Include="_Components\Renderer\Material.h" />
     <ClInclude Include="_Components\Base\Component.h" />
@@ -108,7 +110,7 @@
     <ClInclude Include="Managers\Input\InputManager.h" />
     <ClInclude Include="Utility\Importer\ModelUtility.h" />
     <ClInclude Include="_Objects\Base\Object.h" />
-    <ClInclude Include="_Components\Renderer\Renderer.h" />
+    <ClInclude Include="_Components\Renderer.h" />
     <ClInclude Include="_Objects\Base\Transform.h" />
     <ClInclude Include="_Scenes\SceneObject.h" />
     <ClInclude Include="Utility\PolygonUtility.h" />
@@ -124,16 +126,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Managers\ResourceManager.cpp" />
-    <ClCompile Include="MainEntry\Resources\Texture.cpp" />
+    <ClCompile Include="_Components\Renderer\Texture.cpp" />
     <ClCompile Include="_Components\Renderer\Material.cpp" />
     <ClCompile Include="_Components\Renderer\Mesh.cpp" />
+    <ClCompile Include="_Objects\Base\XMHelper\XMHelper.cpp" />
     <ClCompile Include="_Objects\ObjectModel.cpp" />
     <ClCompile Include="_Components\CameraModule.cpp" />
     <ClCompile Include="Managers\Camera\CameraManager.cpp" />
     <ClCompile Include="Managers\Input\InputManager.cpp" />
     <ClCompile Include="Utility\Importer\ModelUtility.cpp" />
     <ClCompile Include="_Objects\Base\Object.cpp" />
-    <ClCompile Include="_Components\Renderer\Renderer.cpp" />
+    <ClCompile Include="_Components\Renderer.cpp" />
     <ClCompile Include="_Objects\Base\Transform.cpp" />
     <ClCompile Include="Utility\PolygonUtility.cpp" />
     <ClCompile Include="_Scenes\Sample\SampleScene.cpp" />
@@ -143,21 +146,6 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="System\winMain.cpp" />
     <ClCompile Include="Managers\Timer\Timer.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="System\Renderer\FX\PixelShader.fx">
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main</EntryPointName>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main</EntryPointName>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Fc /Od /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc compile for debug: %(FullPath)</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fxc /T fx_5_0 /Fo "%(RelativeDir)\%(Filename).fxo" "%(FullPath)"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Fxc compile for release: %(FullPath)</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)\%(Filename).fxo</Outputs>
-    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

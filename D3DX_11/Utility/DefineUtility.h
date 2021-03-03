@@ -1,4 +1,5 @@
 #pragma once
+#define TO_STRING(str) #str;
 #define ALIGNED_MALLOC(type, name)	\
 	name = (type*)_aligned_malloc(sizeof(type), (size_t)sizeof 16);	\
 	new (name)type;					\

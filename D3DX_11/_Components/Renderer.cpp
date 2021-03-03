@@ -32,16 +32,8 @@ namespace Components
 
 	void Renderer::Render()
 	{
-		if (!m_Mesh) return;
-
-		DXRenderer::Get().GetContext()->IASetInputLayout(m_InputLayout);
-		DXRenderer::Get().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-		UINT stride = sizeof Renderers::MeshValue::VertexValue;
-		UINT offset = 0;
-
-		DXRenderer::Get().GetContext()->IASetVertexBuffers(0, 1, &m_Mesh->VerticesBuffer, &stride, &offset);
-		DXRenderer::Get().GetContext()->IASetIndexBuffer(m_Mesh->IndicesBuffer, DXGI_FORMAT_R32_UINT, 0);
+		UpdateMesh();
+		UpdateMaterial();
 
 		DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
 
@@ -57,6 +49,25 @@ namespace Components
 			m_Techniuque->GetPassByIndex(p)->Apply(0, DXRenderer::Get().GetContext());
 			DXRenderer::Get().GetContext()->DrawIndexed(m_Mesh->NumIndices(), 0, 0);
 		}
+	}
+
+	void Renderer::UpdateMesh()
+	{
+		if (!m_Mesh) return;
+
+		DXRenderer::Get().GetContext()->IASetInputLayout(m_InputLayout);
+		DXRenderer::Get().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		UINT stride = sizeof Renderers::MeshValue::VertexValue;
+		UINT offset = 0;
+
+		DXRenderer::Get().GetContext()->IASetVertexBuffers(0, 1, &m_Mesh->VerticesBuffer, &stride, &offset);
+		DXRenderer::Get().GetContext()->IASetIndexBuffer(m_Mesh->IndicesBuffer, DXGI_FORMAT_R32_UINT, 0);
+	}
+
+	void Renderer::UpdateMaterial()
+	{
+
 	}
 
 	HRESULT Renderer::SetBuffers()

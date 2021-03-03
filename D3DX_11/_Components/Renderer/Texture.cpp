@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "Texture.h"
 
-namespace Resources
+namespace Components
 {
-	namespace Textures
+	namespace Renderers
 	{
 		Texture::Texture()
 			: m_DiffuseSRV(nullptr), m_DiffuseVariable(nullptr)

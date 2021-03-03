@@ -2,19 +2,18 @@
 #include <DirectXMath.h>
 #include "Utility/DefineUtility.h"
 
+#include "XMHelper/Vector3.h"
+using namespace Vectors;
+
 class Transform
 {
 public:
 	Transform();
 	~Transform();
 
-private:
-	Property(DirectX::XMVECTOR, Position)
-	Property(DirectX::XMVECTOR, Rotation)
-	Property(DirectX::XMVECTOR, Scale)
-
-	Property(DirectX::XMMATRIX, WorldMatrix)
 public:
-	
-};
+	Vector3 Position;
+	Vector3 Rotation;
+	Vector3 Scale;
 
+};
