@@ -94,6 +94,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Managers\ResourceManager.h" />
+    <ClInclude Include="MainEntry\Resources\Texture.h" />
     <ClInclude Include="_Components\Renderer\Interfaces\IRenderer.h" />
     <ClInclude Include="_Components\Renderer\Material.h" />
     <ClInclude Include="_Components\Base\Component.h" />
@@ -121,6 +123,8 @@
     <ClInclude Include="Utility\DefineUtility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Managers\ResourceManager.cpp" />
+    <ClCompile Include="MainEntry\Resources\Texture.cpp" />
     <ClCompile Include="_Components\Renderer\Material.cpp" />
     <ClCompile Include="_Components\Renderer\Mesh.cpp" />
     <ClCompile Include="_Objects\ObjectModel.cpp" />
