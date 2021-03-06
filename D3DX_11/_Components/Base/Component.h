@@ -1,13 +1,15 @@
 #pragma once
+#include "_Objects/ObjectModel.h"
 
-class Object;
-class Transform;
 class Component
 {
 public:
-	Component(Object* connector) : m_Object(connector), m_Transform((Transform*)connector) { }
+	Component(ObjectModel* connector)
+		: object(connector), transform(connector->transform)
+	{ }
 	virtual ~Component() { }
 
+	Component() = delete;
 	Component(const Component&) = delete;
 	Component(Component&&) = delete;
 	Component& operator=(const Component&) = delete;
@@ -16,9 +18,7 @@ public:
 	virtual void Update() {}
 	virtual void Render() {}
 
-	Object* GetConnector() const { return m_Object; }
-
 protected:
-	Object* m_Object = nullptr;
-	Transform* m_Transform = nullptr;
+	ObjectModel* object = nullptr;
+	Transform* transform = nullptr;
 };

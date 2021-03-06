@@ -3,10 +3,12 @@
 #include <vector>
 
 class Component;
+class ObjectModel;
+
 class Object
 {
 public:
-	Object();
+	Object(std::string name);
 	~Object();
 
 	void Update();
@@ -37,7 +39,7 @@ public:
 		ComponentType* pResult = GetComponent<ComponentType>();
 		if (!pResult)
 		{
-			pResult = new ComponentType(this);
+			pResult = new ComponentType((ObjectModel*)this);
 			m_Component.emplace_back(pResult);
 		}
 

@@ -3,7 +3,8 @@
 
 #include "_Components/Base/Component.h"
 
-Object::Object()
+Object::Object(std::string name)
+	: Name(name)
 {
 
 }

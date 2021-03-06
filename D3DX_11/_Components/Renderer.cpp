@@ -3,7 +3,7 @@
 
 namespace Components
 {
-	Renderer::Renderer(Object* pConnect)
+	Renderer::Renderer(ObjectModel* pConnect)
 		: Component(pConnect),
 		m_Mesh(nullptr), m_Material(nullptr), m_Fx(nullptr),
 		m_Techniuque(nullptr),
@@ -35,9 +35,7 @@ namespace Components
 		UpdateMesh();
 		UpdateMaterial();
 
-		DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
-
-		m_WorldVariable->SetMatrix((float*)&world);
+		m_WorldVariable->SetMatrix((float*)&transform->WorldMat);
 		m_ViewVariable->SetMatrix((float*)&CameraManager::Get().GetViewMatrix());
 		m_ProjectionVariable->SetMatrix((float*)&CameraManager::Get().GetProjMatrix());
 

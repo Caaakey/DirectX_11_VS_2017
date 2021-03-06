@@ -8,12 +8,12 @@ SampleScene::SampleScene(const char* name)
 
 SampleScene::~SampleScene()
 {
-	DestroyObject(pObject);
+	SAFE_DELETE(pObject);
 }
 
 HRESULT SampleScene::Start()
 {
-	pObject = ObjectModel::CreateModel("Dummy");
+	pObject = new ObjectModel("Dummy");
 	Components::Renderer* r = pObject->AddComponent<Components::Renderer>();
 
 	r->SetMesh(PolygonUtility::CreateBox(DirectX::XMFLOAT3(1, 1, 1)));

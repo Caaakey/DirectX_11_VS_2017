@@ -7,7 +7,7 @@ namespace Components
 	class Renderer : public Component
 	{
 	public:
-		Renderer(Object* pConnect);
+		Renderer(ObjectModel* pConnect);
 		~Renderer();
 
 		void Release();
