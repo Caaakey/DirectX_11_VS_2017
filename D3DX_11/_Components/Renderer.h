@@ -44,12 +44,13 @@ namespace Components
 		}
 
 		Renderers::Material* GetMaterial() const { return m_Material; }
-		void SetMaterial(Renderers::Material* material)
+		void SetMaterial(std::wstring texturePath)
 		{
 			if (m_Material) SAFE_DELETE(m_Material);
-			m_Material = material;
 
-
+			m_Material = new Material();
+			if (!m_Material->LoadTexture(texturePath, m_Fx))
+				SAFE_DELETE(m_Material);
 		}
 	};
 }

@@ -15,8 +15,8 @@ HRESULT SampleScene::Start()
 {
 	pObject = new ObjectModel("Dummy");
 	Components::Renderer* r = pObject->AddComponent<Components::Renderer>();
-
 	r->SetMesh(PolygonUtility::CreateBox(DirectX::XMFLOAT3(1, 1, 1)));
+	r->SetMaterial(L"../_Resources/darkbrickdxt1.dds");
 
 	return S_OK;
 }

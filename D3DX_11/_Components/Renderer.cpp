@@ -65,7 +65,9 @@ namespace Components
 
 	void Renderer::UpdateMaterial()
 	{
+		if (!m_Material) return;
 
+		m_Material->IASet();
 	}
 
 	HRESULT Renderer::SetBuffers()
@@ -78,6 +80,8 @@ namespace Components
 	HRESULT Renderer::IASetup(LPCWSTR filePath)
 	{
 		if (!m_Mesh) return E_FAIL;
+
+		ID3D11Device* device = DXRenderer::Get().GetDevice();
 
 		DWORD flags = D3DCOMPILE_ENABLE_STRICTNESS;
 		ID3D10Blob* pErrMsg = nullptr;
@@ -93,7 +97,7 @@ namespace Components
 			nullptr,
 			D3D_COMPILE_STANDARD_FILE_INCLUDE,
 			flags, 0,
-			DXRenderer::Get().GetDevice(),
+			device,
 			&m_Fx,
 			&pErrMsg);
 

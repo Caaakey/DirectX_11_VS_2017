@@ -12,8 +12,14 @@ namespace Components
 			Material();
 			~Material();
 
+			void IASet();
+
 		private:
 			Texture* m_MainTexture;
+
+		public:
+			Texture* MainTexture() const { m_MainTexture; }
+			bool LoadTexture(std::wstring filePath, ID3DX11Effect* pFx);
 
 		};
 	}
