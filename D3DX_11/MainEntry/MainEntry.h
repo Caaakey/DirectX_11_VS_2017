@@ -14,6 +14,7 @@ public:
 	HRESULT Start();
 	void Update();
 	void Render();
+	void OnGUI();
 
 	HRESULT AddScene(SceneObject* pScene);
 	HRESULT RemoveScene(SceneObject* pScene);

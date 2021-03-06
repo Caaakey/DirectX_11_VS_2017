@@ -7,6 +7,7 @@ namespace Vectors
 	public:
 		Vector3() : m_Vector(DirectX::XMVectorZero()), m_Float(0, 0, 0) {}
 		Vector3(float x, float y, float z) { Set(x, y, z); }
+		Vector3(const DirectX::XMFLOAT3& vec) { Set(vec.x, vec.y, vec.z); }
 		Vector3(const Vector3& vec)
 			: m_Float(vec.m_Float), m_Vector(vec.m_Vector) { }
 
@@ -77,12 +78,18 @@ namespace Vectors
 			float y = this->m_Float.y / vec.m_Float.y;
 			float z = this->m_Float.z / vec.m_Float.z;
 
-			return Vector3(x, y, z);
+			Set(x, y, z);
+			return *this;
 		}
-		Vector3 operator=(const Vector3& vec)
+		Vector3 operator=(const DirectX::XMFLOAT3& vec)
 		{
-			return Vector3(vec);
+			Set(vec.x, vec.y, vec.z);
+			return *this;
 		}
+
+		explicit operator DirectX::XMFLOAT3() const { return m_Float; }
+
+		DirectX::XMVECTOR& GetVector() { return m_Vector; }
 	};
 
 }

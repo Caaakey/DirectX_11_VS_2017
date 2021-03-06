@@ -229,28 +229,33 @@ void DXRenderer::Resize(UINT width, UINT height)
 	CreateBackBuffer(width, height);
 }
 
-static bool isShow = true;
 const float m_ClearColor[] = { 0.5f, 0.5f, 0.5f, 1.0f };
 void DXRenderer::Clear()
 {
-	if (isUseImGui) {
-		ImGui_ImplDX11_NewFrame();
-		ImGui_ImplWin32_NewFrame();
-		ImGui::NewFrame();
-
-		ImGui::ShowDemoWindow(&isShow);
-	}
-
 	m_DeviceContext->ClearRenderTargetView(m_RenderTargetView, m_ClearColor);
 	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 }
 
 void DXRenderer::Present()
 {
-	if (isUseImGui) {
-		ImGui::Render();
-		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-	}
-
 	m_SwapChain->Present(isVsync ? 1 : 0, 0);
+}
+
+void DXRenderer::NewFrameOnGUI()
+{
+	if (!isUseImGui) return;
+
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
+	//ImGui::ShowDemoWindow(&isShow);
+}
+
+void DXRenderer::RenderOnGUI()
+{
+	if (!isUseImGui) return;
+
+	ImGui::Render();
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 }

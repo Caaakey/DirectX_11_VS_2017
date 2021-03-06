@@ -35,7 +35,7 @@ namespace Components
 		UpdateMesh();
 		UpdateMaterial();
 
-		m_WorldVariable->SetMatrix((float*)&transform->WorldMat);
+		m_WorldVariable->SetMatrix((float*)transform->GetMatrix());
 		m_ViewVariable->SetMatrix((float*)&CameraManager::Get().GetViewMatrix());
 		m_ProjectionVariable->SetMatrix((float*)&CameraManager::Get().GetProjMatrix());
 

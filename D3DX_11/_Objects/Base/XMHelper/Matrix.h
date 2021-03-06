@@ -12,6 +12,7 @@ namespace Vectors
 		~Matrix() {}
 
 	private:
+		//	Do not change the order!!
 		DirectX::XMMATRIX m_Matrix;
 		DirectX::XMFLOAT4X4 m_Float4x4;
 
@@ -21,6 +22,11 @@ namespace Vectors
 		{
 			m_Matrix = matrix;
 			DirectX::XMStoreFloat4x4(&m_Float4x4, matrix);
+		}
+		void SetMatrix(const DirectX::XMFLOAT4X4& mat4x4)
+		{
+			m_Float4x4 = mat4x4;
+			m_Matrix = DirectX::XMLoadFloat4x4(&mat4x4);
 		}
 
 	};

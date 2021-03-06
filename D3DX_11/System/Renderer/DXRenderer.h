@@ -33,6 +33,8 @@ public:
 	void Clear();
 	void Present();
 
+	void NewFrameOnGUI();
+	void RenderOnGUI();
 	bool IsUsedImGui() const { return isUseImGui; }
 
 private:

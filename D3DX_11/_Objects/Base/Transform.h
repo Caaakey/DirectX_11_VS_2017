@@ -17,6 +17,13 @@ public:
 	Vector3 Rotation;
 	Vector3 Scale;
 
-	Matrix WorldMat;
+private:
+	Matrix m_WorldMat;
+
+public:
+	DirectX::XMMATRIX* GetMatrix();
+
+	void SetMatrix(const DirectX::XMMATRIX& matrix) { m_WorldMat.SetMatrix(matrix); }
+	void SetMatrix(const DirectX::XMFLOAT4X4& mat4x4) { m_WorldMat.SetMatrix(mat4x4); }
 
 };

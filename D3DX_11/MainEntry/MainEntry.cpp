@@ -40,6 +40,12 @@ void MainEntry::Render()
 		m_Scenes[i]->Render();
 }
 
+void MainEntry::OnGUI()
+{
+	for (UINT i = 0; i < m_SceneLength; ++i)
+		m_Scenes[i]->OnGUI();
+}
+
 HRESULT MainEntry::AddScene(SceneObject * pScene)
 {
 	try

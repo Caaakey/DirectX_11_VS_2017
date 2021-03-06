@@ -18,7 +18,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	if (FAILED(m_Renderer->Initialize(m_Application->Width, m_Application->Height)))		return FALSE;
 	if (FAILED(m_Renderer->InitializeDeviceAndSwapChain(m_Application->hWnd)))				return FALSE;
 	if (FAILED(m_Renderer->CreateBackBuffer(m_Application->Width, m_Application->Height)))	return FALSE;
-	//if (FAILED(m_Renderer->InitializeImGui(m_Application->hWnd)))							return FALSE;
+	if (FAILED(m_Renderer->InitializeImGui(m_Application->hWnd)))							return FALSE;
 
 	MainEntry m_Main;
 	if (FAILED(m_Main.Start()))	return FALSE;
@@ -37,8 +37,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 			m_Main.Update();
 
+			m_Renderer->NewFrameOnGUI();
+			m_Main.OnGUI();
+
 			m_Renderer->Clear();
 			m_Main.Render();
+			m_Renderer->RenderOnGUI();
 			m_Renderer->Present();
 		}
 	}
