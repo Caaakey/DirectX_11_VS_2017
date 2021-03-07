@@ -22,15 +22,14 @@ namespace Components
 				VertexValue(
 					float px, float py, float pz,
 					float nx, float ny, float nz,
-					float tx, float ty, float tz, float u, float v)
-					: Position(px, py, pz), Normal(nx, ny, nz), TangentU(tx, ty, tz), TexC(u, v) { }
+					float u, float v)
+					: Position(px, py, pz), Normal(nx, ny, nz), TexC(u, v) { }
 
-				VertexValue(const DirectX::XMFLOAT3& v, const DirectX::XMFLOAT3& n, const DirectX::XMFLOAT3& t, const DirectX::XMFLOAT2& uv)
-					: Position(v), Normal(n), TangentU(t), TexC(uv) { }
+				VertexValue(const DirectX::XMFLOAT3& v, const DirectX::XMFLOAT3& n, const DirectX::XMFLOAT2& uv)
+					: Position(v), Normal(n), TexC(uv) { }
 
 				DirectX::XMFLOAT3 Position;
 				DirectX::XMFLOAT3 Normal;
-				DirectX::XMFLOAT3 TangentU;
 				DirectX::XMFLOAT2 TexC;
 			};
 

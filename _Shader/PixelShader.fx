@@ -13,12 +13,12 @@ struct VS_INPUT
 };
 
 Texture2D diffuseTex;
-SamplerState SamplerType
-{
-	Filter = MIN_MAG_MIP_LINEAR;
-	//Filter = ANISOTROPIC;
-	//MaxAnisotropy = 4; //	1 ~ 16
-};
+SamplerState SamplerType;
+//{
+//	Filter = MIN_MAG_MIP_LINEAR;
+//	//Filter = ANISOTROPIC;
+//	//MaxAnisotropy = 4; //	1 ~ 16
+//};
 
 struct PS_INPUT
 {

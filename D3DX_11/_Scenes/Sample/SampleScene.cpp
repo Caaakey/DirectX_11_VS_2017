@@ -16,7 +16,7 @@ HRESULT SampleScene::Start()
 	pObject = new ObjectModel("Dummy");
 	Components::Renderer* r = pObject->AddComponent<Components::Renderer>();
 	r->SetMesh(PolygonUtility::CreateBox(DirectX::XMFLOAT3(1, 1, 1)));
-	r->SetMaterial(L"../_Resources/darkbrickdxt1.dds");
+	r->SetMaterial(L"../_Resources/WoodCrate01.dds");
 
 	return S_OK;
 }
@@ -41,8 +41,8 @@ void SampleScene::OnGUI()
 		DirectX::XMFLOAT3 scl = (DirectX::XMFLOAT3)pObject->transform->Scale;
 
 		if (ImGui::SliderFloat3("Position", (float*)&pos, -1.0f, 1.0f)) pObject->transform->Position = pos;
-		if (ImGui::SliderFloat3("Rotation", (float*)&rot, -1.0f, 1.0f)) pObject->transform->Rotation = rot;
-		if (ImGui::SliderFloat3("Scale", (float*)&scl, -1.0f, 1.0f)) pObject->transform->Scale = scl;
+		if (ImGui::SliderFloat3("Rotation", (float*)&rot, 0.0f, DirectX::XM_PI)) pObject->transform->Rotation = rot;
+		if (ImGui::SliderFloat3("Scale", (float*)&scl, -10.0f, 10.0f)) pObject->transform->Scale = scl;
 	}
 	ImGui::End();
 }

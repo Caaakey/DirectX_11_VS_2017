@@ -103,7 +103,6 @@
     <ClInclude Include="_Components\Base\Component.h" />
     <ClInclude Include="ComponentHeader.h" />
     <ClInclude Include="_Components\Renderer\Mesh.h" />
-    <ClInclude Include="System\Renderer\Shader\Vertex.h" />
     <ClInclude Include="_Objects\ObjectModel.h" />
     <ClInclude Include="_Components\CameraModule.h" />
     <ClInclude Include="Managers\Camera\CameraManager.h" />

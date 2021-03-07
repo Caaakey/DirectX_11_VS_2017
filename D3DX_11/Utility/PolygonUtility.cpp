@@ -8,40 +8,40 @@ Mesh * PolygonUtility::CreateBox(DirectX::XMFLOAT3 scale)
 	MeshValue::VertexValue v[24];
 
 	// Fill in the front face vertex data.
-	v[0] = MeshValue::VertexValue(-value.x, -value.y, -value.z, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
-	v[1] = MeshValue::VertexValue(-value.x, +value.y, -value.z, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-	v[2] = MeshValue::VertexValue(+value.x, +value.y, -value.z, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-	v[3] = MeshValue::VertexValue(+value.x, -value.y, -value.z, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+	v[0] = MeshValue::VertexValue(-value.x, -value.y, -value.z, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f);
+	v[1] = MeshValue::VertexValue(-value.x, +value.y, -value.z, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f);
+	v[2] = MeshValue::VertexValue(+value.x, +value.y, -value.z, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f);
+	v[3] = MeshValue::VertexValue(+value.x, -value.y, -value.z, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f);
 
 	// Fill in the back face vertex data.
-	v[4] = MeshValue::VertexValue(-value.x, -value.y, +value.z, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f);
-	v[5] = MeshValue::VertexValue(+value.x, -value.y, +value.z, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
-	v[6] = MeshValue::VertexValue(+value.x, +value.y, +value.z, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-	v[7] = MeshValue::VertexValue(-value.x, +value.y, +value.z, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+	v[4] = MeshValue::VertexValue(-value.x, -value.y, +value.z, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f);
+	v[5] = MeshValue::VertexValue(+value.x, -value.y, +value.z, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f);
+	v[6] = MeshValue::VertexValue(+value.x, +value.y, +value.z, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f);
+	v[7] = MeshValue::VertexValue(-value.x, +value.y, +value.z, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f);
 
 	// Fill in the top face vertex data.
-	v[8] = MeshValue::VertexValue(-value.x, +value.y, -value.z, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
-	v[9] = MeshValue::VertexValue(-value.x, +value.y, +value.z, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-	v[10] = MeshValue::VertexValue(+value.x, +value.y, +value.z, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-	v[11] = MeshValue::VertexValue(+value.x, +value.y, -value.z, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+	v[8]  = MeshValue::VertexValue(-value.x, +value.y, -value.z, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
+	v[9]  = MeshValue::VertexValue(-value.x, +value.y, +value.z, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f);
+	v[10] = MeshValue::VertexValue(+value.x, +value.y, +value.z, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f);
+	v[11] = MeshValue::VertexValue(+value.x, +value.y, -value.z, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f);
 
 	// Fill in the bottom face vertex data.
-	v[12] = MeshValue::VertexValue(-value.x, -value.y, -value.z, 0.0f, -1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f);
-	v[13] = MeshValue::VertexValue(+value.x, -value.y, -value.z, 0.0f, -1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
-	v[14] = MeshValue::VertexValue(+value.x, -value.y, +value.z, 0.0f, -1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-	v[15] = MeshValue::VertexValue(-value.x, -value.y, +value.z, 0.0f, -1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+	v[12] = MeshValue::VertexValue(-value.x, -value.y, -value.z, 0.0f, -1.0f, 0.0f, 1.0f, 1.0f);
+	v[13] = MeshValue::VertexValue(+value.x, -value.y, -value.z, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f);
+	v[14] = MeshValue::VertexValue(+value.x, -value.y, +value.z, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f);
+	v[15] = MeshValue::VertexValue(-value.x, -value.y, +value.z, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f);
 
 	// Fill in the left face vertex data.
-	v[16] = MeshValue::VertexValue(-value.x, -value.y, +value.z, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f);
-	v[17] = MeshValue::VertexValue(-value.x, +value.y, +value.z, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f);
-	v[18] = MeshValue::VertexValue(-value.x, +value.y, -value.z, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f);
-	v[19] = MeshValue::VertexValue(-value.x, -value.y, -value.z, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f);
+	v[16] = MeshValue::VertexValue(-value.x, -value.y, +value.z, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+	v[17] = MeshValue::VertexValue(-value.x, +value.y, +value.z, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+	v[18] = MeshValue::VertexValue(-value.x, +value.y, -value.z, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+	v[19] = MeshValue::VertexValue(-value.x, -value.y, -value.z, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f);
 
 	// Fill in the right face vertex data.
-	v[20] = MeshValue::VertexValue(+value.x, -value.y, -value.z, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f);
-	v[21] = MeshValue::VertexValue(+value.x, +value.y, -value.z, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f);
-	v[22] = MeshValue::VertexValue(+value.x, +value.y, +value.z, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f);
-	v[23] = MeshValue::VertexValue(+value.x, -value.y, +value.z, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f);
+	v[20] = MeshValue::VertexValue(+value.x, -value.y, -value.z, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+	v[21] = MeshValue::VertexValue(+value.x, +value.y, -value.z, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+	v[22] = MeshValue::VertexValue(+value.x, +value.y, +value.z, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+	v[23] = MeshValue::VertexValue(+value.x, -value.y, +value.z, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f);
 
 	// Create the indices.
 	UINT i[36];

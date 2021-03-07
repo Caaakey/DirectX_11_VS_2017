@@ -29,8 +29,8 @@ namespace Components
 		HRESULT SetBuffers();
 		HRESULT IASetup(LPCWSTR filePath);
 
-		void UpdateMesh();
-		void UpdateMaterial();
+		void DrawMesh();
+		void DrawMaterial();
 
 	public:
 		Renderers::Mesh* GetMesh() const { return m_Mesh; }

@@ -32,29 +32,29 @@ namespace Components
 
 	void Renderer::Render()
 	{
-		UpdateMesh();
-		UpdateMaterial();
-
-		m_WorldVariable->SetMatrix((float*)transform->GetMatrix());
-		m_ViewVariable->SetMatrix((float*)&CameraManager::Get().GetViewMatrix());
-		m_ProjectionVariable->SetMatrix((float*)&CameraManager::Get().GetProjMatrix());
+		DXRenderer::Get().GetContext()->IASetInputLayout(m_InputLayout);
+		DXRenderer::Get().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 		D3DX11_TECHNIQUE_DESC techDesc;
 		m_Techniuque->GetDesc(&techDesc);
 
 		for (UINT p = 0; p < techDesc.Passes; ++p)
 		{
+			DrawMesh();
+			DrawMaterial();
+
+			m_WorldVariable->SetMatrix((float*)transform->GetMatrix());
+			m_ViewVariable->SetMatrix((float*)&CameraManager::Get().GetViewMatrix());
+			m_ProjectionVariable->SetMatrix((float*)&CameraManager::Get().GetProjMatrix());
+
 			m_Techniuque->GetPassByIndex(p)->Apply(0, DXRenderer::Get().GetContext());
 			DXRenderer::Get().GetContext()->DrawIndexed(m_Mesh->NumIndices(), 0, 0);
 		}
 	}
 
-	void Renderer::UpdateMesh()
+	void Renderer::DrawMesh()
 	{
 		if (!m_Mesh) return;
-
-		DXRenderer::Get().GetContext()->IASetInputLayout(m_InputLayout);
-		DXRenderer::Get().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 		UINT stride = sizeof Renderers::MeshValue::VertexValue;
 		UINT offset = 0;
@@ -63,7 +63,7 @@ namespace Components
 		DXRenderer::Get().GetContext()->IASetIndexBuffer(m_Mesh->IndicesBuffer, DXGI_FORMAT_R32_UINT, 0);
 	}
 
-	void Renderer::UpdateMaterial()
+	void Renderer::DrawMaterial()
 	{
 		if (!m_Material) return;
 
@@ -117,8 +117,8 @@ namespace Components
 		D3D11_INPUT_ELEMENT_DESC elements[] =
 		{
 			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-			{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, m_Mesh->NumIndices() / 3, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-			{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, m_Mesh->NumVertices() / 2, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+			{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+			{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
 		};
 
 		D3DX11_PASS_DESC pass;

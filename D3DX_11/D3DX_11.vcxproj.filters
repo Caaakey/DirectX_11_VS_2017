@@ -69,9 +69,6 @@
     <ClInclude Include="_Objects\ObjectModel.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="System\Renderer\Shader\Vertex.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="_Components\Base\Component.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
