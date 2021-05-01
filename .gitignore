@@ -16,17 +16,6 @@
 *.gch
 *.pch
 
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
 # Fortran module files
 *.mod
 *.smod
@@ -416,4 +405,4 @@ MigrationBackup/
 # End of https://www.toptal.com/developers/gitignore/api/windows,c++,visualstudio
 
 # Build files ..
-_Build/
+_[Bb]uild/
