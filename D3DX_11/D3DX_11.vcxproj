@@ -65,6 +65,7 @@
       <AdditionalIncludeDirectories>.\;..\_Extensions;..\_Extensions\PhysX-4.1;..\_Extensions\Assimp;..\_Extensions\DirectXTex</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
