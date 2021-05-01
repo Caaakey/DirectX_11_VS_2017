@@ -70,7 +70,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\_Extensions;..\_Extensions\ImGui\Debug\x64;..\_Extensions\PhysX-4.1\_Lib\Debug\x64;..\_Extensions\Dx11Effect\Debug\x64;..\_Extensions\Assimp\Debug\x64;..\_Extensions\DirectXTex\Debug\x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\_Extensions;..\_Extensions\ImGui\Debug\x64;..\_Extensions\PhysX-4.1\_Lib\Debug\x64;..\_Extensions\Dx11Effect\Debug\x64;..\_Extensions\Assimp\Debug\x64;..\_Extensions\DirectXTex\Debug\x64;..\_Extensions\VLD\bin\Win64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
