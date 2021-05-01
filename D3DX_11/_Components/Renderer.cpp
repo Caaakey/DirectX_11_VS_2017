@@ -43,9 +43,9 @@ namespace Components
 			DrawMesh();
 			DrawMaterial();
 
-			m_WorldVariable->SetMatrix((float*)transform->GetMatrix());
-			m_ViewVariable->SetMatrix((float*)&CameraManager::Get().GetViewMatrix());
-			m_ProjectionVariable->SetMatrix((float*)&CameraManager::Get().GetProjMatrix());
+			m_WorldVariable->SetMatrix(reinterpret_cast<float*>(transform->GetMatrix()));
+			m_ViewVariable->SetMatrix(reinterpret_cast<float*>((&CameraManager::Get().GetViewMatrix())));
+			m_ProjectionVariable->SetMatrix(reinterpret_cast<float*>(&CameraManager::Get().GetProjMatrix()));
 
 			m_Techniuque->GetPassByIndex(p)->Apply(0, DXRenderer::Get().GetContext());
 			DXRenderer::Get().GetContext()->DrawIndexed(m_Mesh->NumIndices(), 0, 0);
