@@ -9,7 +9,7 @@
 
 #if _DEBUG
 #pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
-#pragma comment(lib, "VLD/lib/vld.lib")
+#pragma comment(lib, "VLD/vld.lib")
 #include <VLD/vld.h>
 #endif
 
